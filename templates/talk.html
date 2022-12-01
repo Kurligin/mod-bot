@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>Title</title>
+
+    <link href="/static/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="header">
+                <div>
+                    <h1>Выбраны из топика №{{text}}</h1>
+
+                    {% if where_name==4 %}
+                        <h3>Открыт</h3>
+                    {% else %}
+                        <h3>Закрыт</h3>
+                    {% endif %}
+                </div>
+
+                <a class="hlink" href="http://127.0.0.1:5000/admin/Все">назад</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="wrap">
+                <div align="center">
+                    <table cellpadding="5" cellspacing="5">
+                        <tr>
+                            <td><b>id</b></td>
+                            <td><b>Номер топика</b></td>
+                            <td><b>Автор</b></td>
+                            <td><b>Время публикации</b></td>
+                            <td><b>Содержание ответа</b></td>
+                            <td width="15%"><b>Файл</b></td>
+                        </tr>
+                        {% for i in talk_table %}
+                        <tr>
+                            <td><a href="">{{i.id}}</a></td>
+                            <td><a href="">{{i.topic_id}}</a></td>
+                            <td><a href="">{{i.author}}</a></td>
+                            <td><a href="">{{i.date_time}}</a></td>
+                            <td><a href="">{{i.answer}}</a></td>
+                            <td><a href="">{% if i.file_name != "" %}<a href="{{i.file_name}}"><b>Файл прикреплен</b></a>{% endif %}</a></td>
+                    
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+
+                <div class="form" align="center">
+                    <form id="sendform" action="/send_answer" method="POST" enctype="multipart/form-data">
+                        <!-- enctype="multipart/form-data" нужно для отправки файла-->
+                        <textarea cols="60" rows="5" placeholder="Введите ответ" name="answer"></textarea>
+                        <div>
+                            <input class="button" type="submit" value="Отправить">
+                            <input class="text" type="hidden" value="{{text}}" name="topic_id">
+                            <input type="file" name="file">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <footer>
+        <div class="container">
+            <div class="footer">
+                <h1>Закрыть топик</h1>
+
+                <form id="closeform" action="/close_topic1" method="POST">
+                    <input class="password" type="text" placeholder="Введите ответ" name="password_close"><br>
+                    <input class="button" type="submit" value="Закрыть">
+                </form>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

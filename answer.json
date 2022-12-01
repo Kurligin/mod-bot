@@ -1,0 +1,30 @@
+{
+  "update_id": 988586543,
+  "message": {
+    "message_id": 107,
+    "from": {
+      "id": 1267948648,
+      "is_bot": false,
+      "first_name": "\u0418\u0432\u0430\u043d",
+      "last_name": "\u0415\u0432\u0441\u0442\u0440\u0430\u0442\u043e\u0432",
+      "username": "kurligin",
+      "language_code": "ru"
+    },
+    "chat": {
+      "id": 1267948648,
+      "first_name": "\u0418\u0432\u0430\u043d",
+      "last_name": "\u0415\u0432\u0441\u0442\u0440\u0430\u0442\u043e\u0432",
+      "username": "kurligin",
+      "type": "private"
+    },
+    "date": 1669651477,
+    "text": "/close_topic",
+    "entities": [
+      {
+        "offset": 0,
+        "length": 12,
+        "type": "bot_command"
+      }
+    ]
+  }
+}
