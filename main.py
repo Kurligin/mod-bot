@@ -149,7 +149,7 @@ def index():
                 
                 elif r['message']['text'] == '/close_topic' and where_name == 4:
                     # connection = connection_db.get_connection()  # основной коннект
-                    # print("Соединие установлено ", connection)
+                    # print("Соединение установлено ", connection)
                     # cursor = connection.cursor()  # курсор есть курсор
                     cursor.execute('SELECT topic_id FROM support.users_list WHERE name LIKE %s', (str(id_name)))
                     # return '200'
@@ -390,8 +390,6 @@ def index():
             return "200"
 
 
-# return 1
-# return '<h1>Привет бот!</h1>'
 
 
 # https://api.telegram.org/bot1672815585:AAF7AfgKlB7ULG5mVUpWqRdvRJtQXFh_lNQ/setWebhook?url=https://45b84249eabc.ngrok.io
@@ -406,7 +404,7 @@ def main():
 @app.route('/admin/<status>')
 def index1(status):
     connection = connection_db.get_connection()  # основной коннект
-    print("Соедини е установлено ", connection, status)
+    print("Соединение установлено ", connection, status)
     if status == 'Все':
         sql = "SELECT * FROM topic"
         cursor = connection.cursor()  # курсор есть курсор
@@ -439,7 +437,7 @@ def index1(status):
 @app.route('/talk/<text>')
 def talk(text):
     connection = connection_db.get_connection()  # основной коннект
-    print("Соединие установлено ", connection)
+    print("Соединение установлено ", connection)
     
     sql = "SELECT * FROM talk t WHERE t.topic_id ={}".format(text)
     cursor = connection.cursor()  # курсор есть курсор
@@ -468,29 +466,18 @@ def send_answer():
         print(answer, topic_id)
         
         connection = connection_db.get_connection()  # основной коннект
-        print("Соединие установлено ", connection)
+        print("Соединение установлено ", connection)
         cursor = connection.cursor()  # курсор есть курсор
         
         cursor.execute('SELECT name FROM support.users_list WHERE topic_id = %s;', (topic_id))
         id_t = cursor.fetchall()[0]['name']
         print('id_t: ', id_t, type(id_t))
         
-        # cursor.execute('SELECT chat_id FROM support.talk t WHERE topic_id = %s and chat_id != 1111',(topic_id)) # определение кому отправить сообщение
-        # chat_id=cursor.fetchall()
-        # print('chat_id: ',chat_id)
-        # chat_id=chat_id[len(chat_id)-1]['chat_id']
-        # send_message(chat_id, text=answer) #отправка сообщения в телеграмм
         send_message(id_t, text=answer)
         
         author = "admin"
-        # date_time = "2021-08-30 14:26:00"
         today = datetime.datetime.today()
         date_time = today.strftime("%Y-%m-%d %H:%M:%S")  # 2017-04-05-00.18.00
-        # answer = "fdfdfdf"
-        
-        # sql = 'INSERT INTO talk (topic_id, author, date_time, answer) VALUES(%s,%s,%s,%s)',(topic_id, author, date_time, answer)
-        # cursor.execute('INSERT INTO talk (topic_id, author, date_time, answer,file_name) VALUES(%s,%s,%s,%s,%s)',(topic_id, author, date_time, answer,file_name))  # выполнение sql команды
-        # connection.commit()
         
         UPLOAD_FOLDER = 'static'
         app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -501,7 +488,6 @@ def send_answer():
             if '.' not in file_name:
                 print('Не загрузил. Кирилица в названии')
             else:
-                # file_name=translit(file_name, "ru", reversed=True)
                 print(translit(file_name, "ru", reversed=True))
                 
                 print(file_name, '- Название загружаемого файла1')
@@ -560,7 +546,7 @@ def close_topic1():
         print(topic_id)
         if password_close == '111':
             connection = connection_db.get_connection()  # основной коннект
-            print("Соединие установлено ", connection)
+            print("Соединение установлено ", connection)
             cursor = connection.cursor()  # курсор есть курсор
             cursor.execute(('DELETE FROM support.users_list WHERE topic_id = %s'), (topic_id))
             connection.commit()  # подтверждение изменений в базе
