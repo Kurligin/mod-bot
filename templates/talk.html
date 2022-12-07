@@ -69,10 +69,11 @@
                 </div>
     
                 <div class="input-group">
+                    <input type="hidden" value="{{text}}" name="topic_id">
                     <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04"
                         aria-label="Upload" name="file">
-                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04"
-                        name="button">Отправить</button>
+                    <button class="btn btn-outline-secondary" type="button submit" id="inputGroupFileAddon04"
+                        name="answer" >Отправить</button>
                 </div>
             </form>
         </div>
@@ -82,38 +83,22 @@
     <footer>
         <div class="container">
             <div class="footer">
-                <h1>Закрыть топик</h1>
+                <nav class="navbar">
+                    <h2>Закрыть топик</h2>
 
-                <form id="closeform" action="/close_topic1" method="POST">
-                    <input class="password" type="text" placeholder="Введите ответ" name="password_close"><br>
-                    <input class="button" type="submit" value="Закрыть">
-                </form>
+                    <form class="row" action="/close_topic1" method="POST">
+                        <input type="hidden" value="{{text}}" name="topic_id">
+                        <div class="col-auto">
+                            <input type="text" class="form-control" placeholder="Введите пароль" name="password_close">
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn hlink" onclick="parentNode.submit();"><b>Закрыть</b></button>
+                        </div>
+                    </form>
+                </nav>
             </div>
         </div>
     </footer>
 </body>
 
 </html>
-
-
-<!-- <table cellpadding="5" cellspacing="5">
-    <tr>
-        <td><b>id</b></td>
-        <td><b>Номер топика</b></td>
-        <td><b>Автор</b></td>
-        <td><b>Время публикации</b></td>
-        <td><b>Содержание ответа</b></td>
-        <td width="15%"><b>Файл</b></td>
-    </tr>
-    {% for i in talk_table %}
-    <tr>
-        <td><a href="">{{i.id}}</a></td>
-        <td><a href="">{{i.topic_id}}</a></td>
-        <td><a href="">{{i.author}}</a></td>
-        <td><a href="">{{i.date_time}}</a></td>
-        <td><a href="">{{i.answer}}</a></td>
-        <td><a href="">{% if i.file_name != "" %}<a href="{{i.file_name}}"><b>Файл прикреплен</b></a>{% endif %}</a></td>
-
-    </tr>
-    {% endfor %}
-</table> -->

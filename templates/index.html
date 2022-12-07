@@ -1,62 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Title</title>
-        <link href="/static/style.css" rel="stylesheet">
-    </head>
-    <body>
-        <header>
-            <div class="container">
-                <div class="header">
-                    <h1>Список заявок</h1>
-                    <div>
-                        <a class="hlink" href="/admin/Все">Все</a>
-                        <a class="hlink" href="/admin/открыт">Открыты</a>
-                        <a class="hlink" href="/admin/закрыт">Заткрыты</a>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <main>
-            <div class="container">
-                <div class="wrap">
-                    <div align="center">
-                        <table cellpadding="5" cellspacing="5">
-                            <tr>
-                                <td><b>id</b></td>
-                                <td><b>Автор</b></td>
-                                <td><b>Дата</b></td>
-                                <td><b>Тема</b></td>
-                                <td><b>Содержание обращения</b></td>
-                                <td width="15%"><b>Прикрепленный файл</b></td>
-                                <td><b>Статус</b></td>
-                            </tr>
-                            {% for i in topic_table %}
-                            <tr>
-                                <td><a href="/talk/{{i.ID}}">{{i.ID}}</a></td>
-                                <td><a href="/talk/{{i.ID}}">{{i.author}}</a></td>
-                                <td><a href="/talk/{{i.ID}}">{{i.date_time}}</a></td>
-                                <td><a href="/talk/{{i.ID}}">{{i.title}}</a></td>
-                                <td><a href="/talk/{{i.ID}}">{{i.body_text}}</a></td>
-                                <td>{% if i.file_name != "нет" %}<a href="{{i.file_name}}"><b>Файл прикреплен</b></a>{% endif %}
-                                </td>
-                                <td {% if i.status=='закрыт' %} bgcolor="#faa5a5" 
-                                    {% else %} bgcolor="#49c1a2"
-                                    {% endif %}>
-                                    <a href="/talk/{{i.ID}}">{{i.status}}</a>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </body>
-</html> -->
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -111,8 +52,7 @@
                         <td><a href="/talk/{{i.ID}}">{{i.body_text}}</a></td>
                         <td>{% if i.file_name != "нет" %}<a href="{{i.file_name}}"><b>Файл прикреплен</b></a>{% endif %}
                         </td>
-                        <td {% if i.status=="закрыт" %} style="background-color: #faa5a5;" 
-                            {% else %} style="background-color: #49c1a2;" {% endif %}>
+                        <td {% if i.status=="открыт" %} style="background-color: #49c1a2;" {% endif %}>
                             <a href="/talk/{{i.ID}}">{{i.status}}</a>
                         </td>
                     </tr>
